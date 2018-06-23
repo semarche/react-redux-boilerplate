@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navbar matches the snapshot 1`] = `
+<div
+  className="top-navbar"
+>
+  <div
+    className="left-part"
+  >
+    <NavLink
+      activeClassName="selected"
+      aria-current="page"
+      to="/"
+    >
+      Home
+    </NavLink>
+    <NavLink
+      activeClassName="selected"
+      aria-current="page"
+      to="/profile"
+    >
+      Profiles
+    </NavLink>
+  </div>
+  <div
+    className="right-part"
+  >
+    <h4
+      onClick={[MockFunction]}
+    >
+      Log out
+    </h4>
+  </div>
+</div>
+`;

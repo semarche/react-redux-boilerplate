@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login matches the snapshot 1`] = `
+<div
+  className="login-form"
+>
+  <h2>
+    LogIn form
+  </h2>
+  <h4>
+    Click 
+    <Button
+      onClick={[MockFunction]}
+      text="THERE"
+    />
+     for Log in
+  </h4>
+</div>
+`;

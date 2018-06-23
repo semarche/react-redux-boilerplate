@@ -1,0 +1,12 @@
+FROM node:8 AS uicontainer
+
+MAINTAINER Marchenko Sergey <sergey.dnepro@gmail.com>
+
+RUN mkdir -p /frontend
+WORKDIR /frontend
+COPY package*.json /frontend/
+
+# build static
+RUN npm install --production --no-optional --silent
+ADD ./ /frontend
+RUN npm run build

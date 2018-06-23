@@ -1,0 +1,21 @@
+@import "../../conststants";
+
+.top-navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  text-align: right;
+  display: flex;
+  .left-part, .right-part {
+    flex: 1;
+    padding: 0 3rem;
+  }
+  .left-part {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    a {
+      margin: 0 1rem;
+    }
+  }
+}

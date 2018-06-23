@@ -1,0 +1,10 @@
+{
+  "plugins": [
+    "dynamic-import-webpack"
+  ],
+  "presets": [
+    "react",
+    "stage-3",
+    "env"
+  ]
+}
