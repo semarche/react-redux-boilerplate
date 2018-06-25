@@ -3,8 +3,10 @@
 </p>
 
 ## React - Redux - React-Router - Webpack Boilerplate
-
 React, Redux, React-Router and Webpack boilerplate with async routes.
+
+### Live example
+https://semarche.github.io/react-redux-boilerplate
 
 ### Table of contents
 

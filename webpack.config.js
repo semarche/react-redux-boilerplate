@@ -2,45 +2,27 @@ const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-const prod = (process.env.NODE_ENV === "production");
-
+const prod = (process.env.NODE_ENV === 'production');
 const config = prod ? require('./webpack.config.prod.js') : require('./webpack.config.dev.js');
 
-let publicPath = '/';
-if (process.env.APP_URL) {
-    publicPath = process.env.APP_URL;
-}
-
 const extractSass = new ExtractTextPlugin({
-    filename: "[name].[contenthash].css",
+    filename: 'assets/[name].[contenthash].css',
     disable: !prod
 });
 
 const plugins = [
     new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendor',
+        name: 'assets/vendor',
         minChunks: Infinity,
-    }),
-    new CleanWebpackPlugin(['dist/*'], {
-        root: path.resolve(__dirname)
     }),
     extractSass,
     new HtmlWebpackPlugin({
         template: './index.html',
         favicon: './favicon.ico',
-        publicPath
-    }),
-    new webpack.DefinePlugin({
-        'process.env': {
-            DOMAIN_NAME: JSON.stringify(process.env.DOMAIN_NAME || ''),
-            APP_URL: JSON.stringify(process.env.APP_URL || ''),
-            API_URL: JSON.stringify(process.env.API_URL || ''),
-            NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
-        },
+        publicPath: '/'
     }),
     new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/)
 ];
@@ -55,9 +37,10 @@ module.exports = merge(config, {
         vendor: ['react', 'react-dom', 'react-router-dom', 'moment'],
     },
     output: {
-        path: path.resolve(__dirname, "dist"),
-        publicPath,
-        filename: "[name]-[hash].js"
+        path: path.resolve(__dirname, 'dist'),
+        publicPath: './',
+        filename: 'assets/[name].[hash].js',
+        chunkFilename: 'assets/[name].[chunkhash].js'
     },
 
     resolve: {
@@ -69,11 +52,7 @@ module.exports = merge(config, {
         rules: [
             {
                 test: /\.js$/,
-                include: [
-                    path.resolve(__dirname, "src"),
-                    path.resolve(__dirname, "node_modules/query-string"),
-                    path.resolve(__dirname, "node_modules/strict-uri-encode"),
-                ],
+                include: path.join(__dirname, 'src'),
                 use: ['babel-loader']
             },
             {
@@ -103,11 +82,11 @@ module.exports = merge(config, {
                 test: /\.scss$/,
                 use: extractSass.extract({
                     use: [
-                        "css-loader",
-                        "sass-loader",
-                        "postcss-loader",
+                        'css-loader',
+                        'sass-loader',
+                        'postcss-loader',
                     ],
-                    fallback: "style-loader"
+                    fallback: 'style-loader'
                 })
             },
             {

@@ -10,7 +10,9 @@ import { Router } from 'react-router-dom';
 import reducer from './reducer';
 import App from './app';
 
-export const history = createHistory();
+export const basename = process.env.PUBLIC_URL;
+
+export const history = createHistory({ basename });
 const initialState = {};
 const enhancers = [];
 const middleware = [
